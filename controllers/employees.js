@@ -1,7 +1,14 @@
 const { prisma } = require('./../prisma/prisma-client');
 
 const getAllEmployees = async (req, res) => {
-    res.status(200).json({ message: 'get all employees' });
+    try {
+        const employees = await prisma.employee.findMany();
+        return res.status(200).json(employees);
+    } catch {
+        return res.status(500).json({
+            message: 'Произошла ошибка при запросе списка сотрудников',
+        });
+    }
 };
 
 const createEmployee = async (req, res) => {
