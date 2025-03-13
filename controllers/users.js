@@ -126,7 +126,7 @@ const register = async (req, res) => {
  * @access Private
  */
 const current = (req, res) => {
-    res.send('current');
+    return res.status(200).json(req.user);
 };
 
 module.exports = {
